@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Digital Paradox, Chris McGrath",
+  "classifications": [ "Common", "Console", "CLI" ],
+  "identity": "DigitalParadox.Templates.CLI",
+  "name": "Digital Paradox CLI Application",
+  "shortName": "cliapp"
+}
