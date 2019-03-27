@@ -11,37 +11,39 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="serilog.sample.json" />
+    <None Remove="DigitalParadoxCLI.csproj.DotSettings" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <Content Include="serilog.sample.json">
+    <None Include="serilog.sample.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.1" />
+    <PackageReference Include="Autofac" Version="4.9.2" />
     <PackageReference Include="Autofac.Configuration" Version="4.1.0" />
-    <PackageReference Include="GitVersion.CommandLine.DotNetCore" Version="5.0.0-beta1-72">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" Version="2.3.2" />
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-27425-01" />
-    <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0-preview.19074.2" />
-    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.1.3-dev-00752" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+    <PackageReference Include="CommandLineParser" Version="2.4.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview3.19153.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0-preview3.19153.1" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.2-dev-00187" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00788" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.2-dev-00792" />
+    <PackageReference Include="System.CommandLine.Experimental" Version="0.2.0-alpha.19174.3" />
+    <PackageReference Include="System.CommandLine.Rendering" Version="0.2.0-alpha.19174.3" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configuration\Extensions\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

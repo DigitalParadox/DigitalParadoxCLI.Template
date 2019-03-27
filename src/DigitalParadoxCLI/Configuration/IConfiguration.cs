@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using Serilog.Configuration;
 using Serilog.Events;
 
 namespace DigitalParadoxCLI.Configuration
