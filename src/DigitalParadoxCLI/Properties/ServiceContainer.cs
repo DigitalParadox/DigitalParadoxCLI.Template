@@ -1,11 +1,10 @@
 ﻿using DigitalParadoxCLI.Properties.Modules;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
+using Autofac.Extensions.DependencyInjection;
 
 
 namespace DigitalParadoxCLI.Properties
@@ -16,7 +15,9 @@ namespace DigitalParadoxCLI.Properties
 
         static ContainerBuilder Builder { get; set; } = new ContainerBuilder();
         static IContainer Container { get; set; }
-        //public static IServiceProvider ServiceProvider { get; set; }
+
+        //private static IServiceCollection ServiceCollection { get; set; }
+        public static IServiceProvider ServiceProvider { get; set; }
 
 
 
@@ -28,7 +29,7 @@ namespace DigitalParadoxCLI.Properties
 
 
 
-            //populate autofac with .netcore services if using Microsoft.Extensions.DependencyInjection
+            //populate autofac with .netcore services if using Microsoft.Extensions.DependencyInjection integrations 
             //Builder.Populate(ServiceCollection);
 
 
@@ -36,13 +37,13 @@ namespace DigitalParadoxCLI.Properties
             Builder.RegisterModule<ConfigurationModule>();
             Builder.RegisterModule<SerilogModule>();
 
-            Builder.RegisterType<ApplicationService>();
+            Builder.RegisterType<ApplicationController>();
             
             //build service provider
             Container = Builder.Build();
 
             //set netcore injection service provider if using it 
-            //ServiceProvider = new AutofacServiceProvider(Container);
+            ServiceProvider = new AutofacServiceProvider(Container);
 
             //Register Global Error Handling 
             var log = GetService<ILogger>();
@@ -60,6 +61,6 @@ namespace DigitalParadoxCLI.Properties
             return Container.Resolve<T>(args);
         }
 
-
+        
     }
 }

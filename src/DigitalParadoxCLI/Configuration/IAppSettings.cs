@@ -1,6 +1,4 @@
-﻿using Serilog.Events;
-
-namespace DigitalParadoxCLI.Configuration
+﻿namespace DigitalParadoxCLI.Configuration
 {
     public interface IAppSettings
     {
