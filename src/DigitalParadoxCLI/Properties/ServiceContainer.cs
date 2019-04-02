@@ -1,6 +1,8 @@
 ﻿using DigitalParadoxCLI.Properties.Modules;
 using Serilog;
 using System;
+using System.Collections.Generic;
+using System.CommandLine;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
@@ -37,7 +39,13 @@ namespace DigitalParadoxCLI.Properties
             Builder.RegisterModule<ConfigurationModule>();
             Builder.RegisterModule<SerilogModule>();
 
-            Builder.RegisterType<ApplicationController>();
+            Builder.RegisterType<EntryPoint>();
+
+            Builder.Register(ctx => ServiceProvider)
+                .As<IServiceProvider>();
+
+            Builder.Register(q => q.ResolveOptional(typeof(IEnumerable<Command>)));
+            Builder.RegisterType<HelloWorldController>().As<Command>();
             
             //build service provider
             Container = Builder.Build();
@@ -48,12 +56,20 @@ namespace DigitalParadoxCLI.Properties
             //Register Global Error Handling 
             var log = GetService<ILogger>();
 
- 
-            AppDomain.CurrentDomain.UnhandledException += (s, e) => log.Error(e.ExceptionObject as Exception, "** Crash!! ** { Message }");
-            TaskScheduler.UnobservedTaskException += (s, e) => log.Error(e.Exception, "** Crash!! ** { Message }");
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                log.Error(e.ExceptionObject as Exception, "** Crash!! ** { Message }");
+            };
+            TaskScheduler.UnobservedTaskException += (s, e) =>
+            {
+                log.Error(e.Exception, "** Crash!! ** { Message }");
+            };
 
             //handle app exit tasks 
-            AppDomain.CurrentDomain.ProcessExit += (s, e) => log.Information($"Application exited with code { Environment.ExitCode }");
+            AppDomain.CurrentDomain.ProcessExit += (s, e) =>
+            {
+                log.Information($"Application exited with code {Environment.ExitCode}");
+            };
         }
 
         public static T GetService<T>(params Parameter[] args)

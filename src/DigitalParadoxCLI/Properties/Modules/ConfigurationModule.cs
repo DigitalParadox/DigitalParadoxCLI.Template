@@ -15,10 +15,7 @@ namespace DigitalParadoxCLI.Properties.Modules
 
             config.AddEnvironmentVariables("GITHUB_");
             config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            config.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
-            config.AddJsonFile(Path.Combine(Environment.CurrentDirectory, "appsettings.json"), optional: true, reloadOnChange: true);
             config.AddUserSecrets<IAppSettings>(optional: true, reloadOnChange: true);
-            config.AddCommandLine(Environment.GetCommandLineArgs());
 
             var build = config.Build();
 
@@ -27,11 +24,11 @@ namespace DigitalParadoxCLI.Properties.Modules
                 .SingleInstance();
             var configuration = new Configuration.Configuration();
             build.Bind(configuration);
-
+             
             builder.RegisterInstance(configuration)
                 .AsImplementedInterfaces()
                 .ExternallyOwned();
-
+             
         }
     }
 }
