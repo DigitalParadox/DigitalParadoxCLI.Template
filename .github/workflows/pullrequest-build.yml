@@ -1,0 +1,25 @@
+name: ASP.NET Core CI
+
+on: [pull_request]
+
+jobs:
+  build_linux:
+#     strategy: 
+#         dotnet: 
+        
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+        
+    - name: dotnet build
+      run: dotnet build --configuration Release
+    
+    - name: dotnet test 
+      run: dotnet test 
+
+  

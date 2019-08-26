@@ -1,0 +1,1 @@
+<%# IfEmpty(Eval("Thumbnail"), "", "ValidationHelper.GetString(GetImage("Thumbnail",-1,146,-1,ValidationHelper.GetString(Eval("ThumbnailAltText"),"")),"") %>
