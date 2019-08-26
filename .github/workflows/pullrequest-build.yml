@@ -5,16 +5,19 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-16.04
-    strategy:
-      matrix:
-        dotnet: ['3.0.100-preview8-013656' ]
-    name: Dotnet ${{ matrix.dotnet }} sample
+   
+    name: Setup Dotnet
     steps:
       - uses: actions/checkout@master
+      
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ matrix.dotnet }}
+          dotnet-version: 2.2.401
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.0.100-preview8-013656
+      
       - run: dotnet build && dotnet test 
 
 
